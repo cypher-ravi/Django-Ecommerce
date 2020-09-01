@@ -99,4 +99,4 @@ ENV/
 
 *.sqlite3
 .vagrant
-static_in_env
+# static_in_env
