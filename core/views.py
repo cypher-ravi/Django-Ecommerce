@@ -1,8 +1,15 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
+
 from .models import Item
 
 # Create your views here.
-def item_list(request):
+class HomeView(ListView):
+    model = Item
+    template = "home-page.html"
+
+def home(request):
+
     context = {
         'items': Item.objects.all()
     }
