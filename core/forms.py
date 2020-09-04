@@ -9,22 +9,26 @@ PAYMENT_CHOICES = (
 )
 
 class CheckoutForm(forms.Form):
-    street_address = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': '1234 Main St',
-        'class': 'form-control'
-    }))
-    apartment_address = forms.CharField(required=False,widget=forms.TextInput(attrs={
-        'placeholder': 'Apartment or suite',
-        'class': 'form-control'
-    }))
-    country = CountryField(blank_label='(select country)').formfield(widget=CountrySelectWidget(attrs={
+    shipping_address = forms.CharField(required=False)
+    shipping_address2 = forms.CharField(required=False)
+    shipping_country = CountryField(blank_label='(select country)').formfield(required=False,widget=CountrySelectWidget(attrs={
         'class':'custom-select d-block w-100'
     }))
-    zip_code = forms.CharField(widget=forms.TextInput(attrs={
-        'class':'form-control'
+    shipping_zip_code = forms.CharField(required=False)
+   
+
+    billing_address = forms.CharField(required=False)
+    billing_address2 = forms.CharField(required=False)
+    billing_country = CountryField(blank_label='(select country)').formfield(required=False,widget=CountrySelectWidget(attrs={
+        'class':'custom-select d-block w-100'
     }))
-    same_Shipping_address = forms.BooleanField(widget=forms.CheckboxInput(),required=False)
-    save_info = forms.BooleanField(widget=forms.CheckboxInput(),required=False)
+    billing_zip_code = forms.CharField(required=False)
+    same_billing_address = forms.BooleanField(widget=forms.CheckboxInput(),required=False)
+    set_default_shipping = forms.BooleanField(widget=forms.CheckboxInput(),required=False)
+    use_default_shipping = forms.BooleanField(widget=forms.CheckboxInput(),required=False)
+
+    set_default_billing = forms.BooleanField(widget=forms.CheckboxInput(),required=False)
+    use_default_billing = forms.BooleanField(widget=forms.CheckboxInput(),required=False)
     payment_option = forms.ChoiceField(widget=forms.RadioSelect(),choices=PAYMENT_CHOICES)
 
 
@@ -36,3 +40,11 @@ class CouponForm(forms.Form):
         'aria-label':'Recipient\'s username',
         'aria-describedby':'basic-addon2',
     }))
+
+
+class RefundForm(forms.Form):
+    ref_code = forms.CharField()
+    message = forms.CharField(widget=forms.Textarea(attrs={
+        'rows':4
+    }))
+    email = forms.EmailField()

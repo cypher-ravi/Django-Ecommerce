@@ -1,5 +1,16 @@
 from django.urls import path,include
-from .views import CheckoutView,ItemDetailView,HomeView,add_to_cart,AddCouponView,remove_from_cart,OderSummaryView,remove_single_item_from_cart,PaymentView
+from .views import (CheckoutView,
+                    ItemDetailView,
+                    HomeView,
+                    add_to_cart,
+                    AddCouponView,
+                    remove_from_cart,
+                    OderSummaryView,
+                    remove_single_item_from_cart,
+                    PaymentView,        
+                    RefundRequestedView,
+                )
+
 app_name = 'core'
 
 urlpatterns = [
@@ -11,5 +22,6 @@ urlpatterns = [
     path('add-coupon/', AddCouponView.as_view(), name= 'add-coupon'),
     path('remove-from-cart/<slug>/', remove_from_cart, name= 'remove-from-cart'),
     path('remove-item-from-cart/<slug>/', remove_single_item_from_cart, name= 'remove-single-item-from-cart'),
-    path('payment/<payment_option>/', PaymentView.as_view(),name= 'payment')
+    path('payment/<payment_option>/', PaymentView.as_view(),name= 'payment'),
+    path('request-refund/', RefundRequestedView.as_view(),name= 'request-refund')
 ]
