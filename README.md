@@ -1,2 +1,2 @@
-# demo
-boilerplates
+# Demo
+DJANGO-Ecommerce boilerplate
